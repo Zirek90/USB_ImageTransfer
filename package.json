@@ -1,0 +1,19 @@
+{
+  "name": "electron_usb_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.1",
+    "electron-rebuild": "^1.8.8"
+  },
+  "dependencies": {
+    "drivelist": "^8.0.9",
+    "fs-extra": "^8.1.0"
+  }
+}

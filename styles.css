@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+#content {
+  background: #f7f7f7;
+  height: 100vh;
+}
+header {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  background: black;
+  align-self: stretch;
+  border-bottom: 2px solid grey;
+  -webkit-app-region: drag;
+}
+.option {
+  color: white;
+  padding: 5px 20px;
+  font-size: 20px;
+  -webkit-app-region: no-drag;
+}
+.option:hover {
+  background: rgb(59, 59, 59);
+  cursor: pointer;
+}
+.wrapper {
+}
+h1,
+h3 {
+  padding: 15px;
+  text-align: center;
+}
+#preview {
+  max-height: 100px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+.chosed_img {
+  max-width: 100px;
+  margin: 2px;
+  border: 1px solid black;
+}
+#drag-file {
+  position: absolute;
+  left: 430px;
+  bottom: 150px;
+}
+#drag-file > p {
+  background-color: white;
+  width: 150px;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: auto;
+}
+#drag-file > p:hover {
+  background-color: #eceaea;
+}
+#send-file {
+  position: absolute;
+  left: 430px;
+  bottom: 200px;
+}
+#send-file > p {
+  background-color: white;
+  width: 150px;
+  height: 35px;
+  border: 1px solid lightgreen;
+  border-radius: 10px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+#send-file > p:hover {
+  background-color: #d6ffd5;
+}
+#usb_title {
+    position: absolute;
+    top: 665px;
+    left: 435px;
+    display: none;
+  }
+#list_of_usb {
+  position: absolute;
+  top: 690px;
+  left: 435px;
+  cursor: pointer;
+}
+#list_of_usb > p {
+  font-size: 12px;
+  padding: 5px;
+}
+#list_of_usb > p:hover {
+  color: grey;
+}
