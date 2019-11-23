@@ -1,13 +1,13 @@
-const { remote } = require('electron');
+const {remote} = require('electron');
 const dialog = remote.dialog;
 const fs = require('fs-extra');
-const { basename } = require('path');
+const {basename} = require('path');
 const drivelist = require('drivelist');
 
 const close = document.querySelector("#close");
 const min = document.querySelector("#min");
-const grabImage = document.querySelector("#drag-file > p");
-const sendImage = document.querySelector("#send-file > p");
+const grabImage = document.querySelector("#drag-file");
+const sendImage = document.querySelector("#send-file");
 const preview = document.querySelector("#preview");
 const list_of_usb_title = document.querySelector("#usb_title");
 const list_of_usb = document.querySelector("#list_of_usb");
@@ -15,7 +15,6 @@ const list_of_usb = document.querySelector("#list_of_usb");
 let file = []
 let usbList = []
 let selectedUsb;
-
 
 closeWindow = () => {
     const window = remote.getCurrentWindow()
@@ -28,20 +27,22 @@ minimizeWindow = () => {
 }
 
 let options = {
-    filters: [
-        { name: 'Images', extensions: ['jpg', 'png', 'gif'] }
-    ],
+    filters: [{
+        name: 'Images',
+        extensions: ['jpg', 'png', 'gif']
+    }],
     properties: ['openFile', 'multiSelections']
 }
 
 getImage = () => {
     dialog.showOpenDialog(options)
         .then(res => {
-            while(preview.firstChild) {
+            while (preview.firstChild) {
                 preview.removeChild(preview.firstChild)
             }
             file = []
             let validator = true
+
             file.forEach(el => {
                 if (el.toString() == res.filePaths.toString()) validator = false
             })
@@ -60,6 +61,7 @@ createPreview = () => {
         image.classList.add('chosed_img')
         image.src = el
         preview.appendChild(image)
+        
     })
 }
 
@@ -73,7 +75,10 @@ findUsbAndDisplay = () => {
                 if (drive.isUSB) {
                     const mountPath = drive.mountpoints[0].path;
                     if (!usbList.includes(mountPath)) {
-                        usbList.push({ path: mountPath, name: drive.description });
+                        usbList.push({
+                            path: mountPath,
+                            name: drive.description
+                        });
                     }
                 }
             })
@@ -90,7 +95,7 @@ findUsbAndDisplay = () => {
                 list_of_usb.appendChild(p)
                 p.addEventListener('click', (e) => {
                     if (preview.children.length) {
-                        sendImage.style.display = "flex"
+                        sendImage.disabled = false;
                     }
                     usbList.forEach((el) => {
                         if (el.name == e.target.innerText) {
@@ -103,17 +108,22 @@ findUsbAndDisplay = () => {
 }
 
 
-
 sendImageToUSB = () => {
+    const processing = document.querySelector('.processing');
+    processing.style.display = "block";
     file[0].forEach((el) => {
         const dir = `${selectedUsb}/images/`
         const name = basename(el.toString())
         if (!fs.existsSync(dir)) fs.mkdirSync(dir)
-        fs.copy(el.toString(), `${dir}${name}`, { overwrite: true })
+        fs
+            .copy(el.toString(), `${dir}${name}`, {
+                overwrite: true
+            })
+            .then(() => processing.style.display = "none")
     })
     file = [];
-    sendImage.style.display = "none" 
-    while(preview.firstChild) {
+    sendImage.disabled = true
+    while (preview.firstChild) {
         preview.removeChild(preview.firstChild)
     }
 }
@@ -124,5 +134,3 @@ min.addEventListener('click', minimizeWindow)
 
 grabImage.addEventListener('click', getImage)
 sendImage.addEventListener('click', sendImageToUSB)
-
-

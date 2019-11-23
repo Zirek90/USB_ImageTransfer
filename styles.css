@@ -26,15 +26,18 @@ header {
   background: rgb(59, 59, 59);
   cursor: pointer;
 }
-.wrapper {
-}
 h1,
 h3 {
   padding: 15px;
   text-align: center;
 }
-#preview {
-  max-height: 100px;
+.preview_container {
+  position: relative;
+  max-height: fit-content;
+  max-width: 90%;
+  margin: auto;
+}
+#preview {  
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -45,62 +48,66 @@ h3 {
   margin: 2px;
   border: 1px solid black;
 }
-#drag-file {
-  position: absolute;
-  left: 430px;
-  bottom: 150px;
+.chosed_img:hover {
+  transform: scale(2.5);
 }
-#drag-file > p {
+.chosed_img_hover {
+  max-width: 100%;
+}
+.btn_panel {
+  margin: 20px;
+  display: block;
+  text-align: center;
+}
+.btns {
   background-color: white;
   width: 150px;
   height: 30px;
   border: 1px solid grey;
   border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
-  margin: auto;
 }
-#drag-file > p:hover {
+#drag-file:hover {
   background-color: #eceaea;
 }
-#send-file {
-  position: absolute;
-  left: 430px;
-  bottom: 200px;
-}
-#send-file > p {
-  background-color: white;
-  width: 150px;
-  height: 35px;
-  border: 1px solid lightgreen;
-  border-radius: 10px;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  cursor: pointer;
-}
-#send-file > p:hover {
+#send-file:hover {
   background-color: #d6ffd5;
 }
 #usb_title {
-    position: absolute;
-    top: 665px;
-    left: 435px;
-    display: none;
+  padding: 10px;
+  text-align: center;
+  display: none;
   }
 #list_of_usb {
-  position: absolute;
-  top: 690px;
-  left: 435px;
+  text-align: center;
   cursor: pointer;
 }
 #list_of_usb > p {
   font-size: 12px;
   padding: 5px;
 }
+#list_of_usb > p::before {
+  content: "\261E";
+  padding: 5px;
+}
 #list_of_usb > p:hover {
   color: grey;
+}
+.processing {
+  display: block;
+  position: relative;
+  height: 350px;
+  text-align: center;
+  display: none;
+}
+.overlay_processing {
+  display: inline-block;
+  background: url("./assets/sprite.png");
+  width: 500px;
+  height: 330px;
+  animation: play 1s steps(8) infinite;
+}
+@keyframes play {
+  0% {background-position: 0}
+  100% { background-position: -1300px; }
 }

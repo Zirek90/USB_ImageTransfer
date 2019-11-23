@@ -1,33 +1,46 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Image Transmiter</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div id="content">
-      <header>
-        <div class="option" id="close">X</div>
-        <div class="option" id="min">_</div>
-      </header>
 
-      <div class="wrapper">
-        <h1>Image Transmiter</h1>
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Transmiter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-        <h3>Images Preview</h3>
+<body>
+  <div id="content">
+    <header>
+      <div class="option" id="close">X</div>
+      <div class="option" id="min">_</div>
+    </header>
+
+    <div class="wrapper">
+      <h1>Image Transmiter</h1>
+
+      <h3>Images Preview</h3>
+      <div class="preview_container">
         <div id="preview"></div>
-
-        <div id="drag-file">
-          <p>Choose image</p>
+        <div class="processing">
+          <div class="overlay_processing"></div>
+          <p>Please wait ...</p>
         </div>
-        <div id="send-file">
-          <p>Transfer to USB</p>
-        </div>
-
-        <h4 id="usb_title">Choose your USB</h4>
-        <div id="list_of_usb"></div>
       </div>
+
+      <div class="btn_panel">
+        <button id="drag-file" class="btns">
+          Choose image
+        </button>
+        <button id="send-file" class="btns" disabled>
+          Transfer to USB
+        </button>
+      </div>
+
+      <h4 id="usb_title">Choose your USB</h4>
+      <div id="list_of_usb"></div>
     </div>
-    <script src="./assets/script.js" type="text/javascript"></script>
-  </body>
+
+  </div>
+
+  <script src="./assets/script.js" type="text/javascript"></script>
+</body>
+
 </html>
